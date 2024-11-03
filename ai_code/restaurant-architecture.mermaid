@@ -1,0 +1,53 @@
+graph TD
+    subgraph Client Layer
+        A[Web Application]
+        B[Mobile App]
+        C[Restaurant Dashboard]
+    end
+
+    subgraph API Gateway
+        D[API Gateway/Load Balancer]
+    end
+
+    subgraph Service Layer
+        E[Authentication Service]
+        F[Order Service]
+        G[Menu Service]
+        H[Payment Service]
+        I[Restaurant Service]
+        J[Delivery Service]
+        K[User Service]
+    end
+
+    subgraph Message Queue
+        L[Message Broker]
+    end
+
+    subgraph Databases
+        M[(User DB)]
+        N[(Order DB)]
+        O[(Menu DB)]
+        P[(Restaurant DB)]
+    end
+
+    subgraph Cache Layer
+        Q[Redis Cache]
+    end
+
+    subgraph External Services
+        R[Payment Gateway]
+        S[SMS/Email Service]
+        T[Maps/Location Service]
+    end
+
+    A & B & C --> D
+    D --> E & F & G & H & I & J & K
+    E & F & G & H & I & J & K --> L
+    E --> M
+    F --> N
+    G --> O
+    I --> P
+    E & F & G & H & I & J & K --> Q
+    H --> R
+    K --> S
+    J --> T
